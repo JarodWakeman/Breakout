@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     {
         this.score = 0;
         this.lives = 3;
+
+        LoadLevel(1);
     }
     private void LoadLevel(int level)
     {
