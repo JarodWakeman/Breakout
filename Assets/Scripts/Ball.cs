@@ -6,7 +6,16 @@ public class Ball : MonoBehaviour
 {
     public new Rigidbody2D rigidbody { get; private set; }
     public float speed = 500f;
+    public AudioSource brickHit;
 
+    public void playHit()
+    {
+        brickHit.Play();
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        brickHit.Play();
+    }
     private void Awake()
     {
         this.rigidbody = GetComponent<Rigidbody2D>();
@@ -14,6 +23,14 @@ public class Ball : MonoBehaviour
 
     private void Start()
     {
+        ResetBall();
+    }
+
+    public void ResetBall()
+    {
+        this.transform.position = Vector2.zero;
+        this.rigidbody.velocity = Vector2.zero;
+
         Invoke(nameof(SetRandomTrajectory), 1f);
     }
 
